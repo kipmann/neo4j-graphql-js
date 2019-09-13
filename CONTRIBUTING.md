@@ -46,27 +46,25 @@ following requirements:
 
 - A local Neo4J instance with username `neo4j` and password `letmein`
 - APOC plugin installed (see instructions [here](https://github.com/neo4j-contrib/neo4j-apoc-procedures#installation-with-neo4j-desktop))
-- Your Neo4J instance runs on [this database](https://s3.amazonaws.com/neo4j-sandbox-usecase-datastores/v3_5/recommendations.db.zip)
-
-In order to import the database, you can download the zipped files and extract
-it to the databases folder of your Neo4J instance. Restart the database on the
-new data.
 
 Once you're done with that:
 
 ```
 npm run start-middleware
+```
+
+**Watch out, the following will wipe out your database!**
+
+```
 # open another terminal and run
 npm run parse-tck
 npm run test-all
 ```
 
-Note that `npm run test-all` will fail on consecutive runs! Some of the
-integration tests create data and get in the way of other tests. Running the
-whole test suite twice will result in some failing tests. There is [an issue
-for it](https://github.com/neo4j-graphql/neo4j-graphql-js/issues/252), check if
-it is still active. Your best option for now is to re-import the data after each
-test run.
+We clean the database after each test run. Because Neo4J does not offer separate
+databases in [community edition](https://community.neo4j.com/t/create-multiple-databases-in-community-version/5025/2),
+we use the same database for testing that you might use for development. So be
+careful.
 
 ### Local Development
 
