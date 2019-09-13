@@ -13,7 +13,7 @@ export const resetDatabase = async () => {
   const seedPath = path.resolve(__dirname, '../fixtures/seed.graphml');
   const session = driver.session();
   await session.run(`
-    MATCH (n) WHERE n:Actor OR n:Director OR n:Genre OR n:Movie OR n:OnlyDate OR n:User DETACH DELETE n RETURN count(n);
+    MATCH (n) DETACH DELETE n RETURN count(n);
   `);
   await session.run(
     `
